@@ -5,7 +5,6 @@ const {ExtractJwt} = require('passport-jwt')
 const User = require('../models/user.model')
 const {JWT_SECRET} = require('./index')
 
-
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('Authorization'),
   secretOrKey: JWT_SECRET
@@ -40,3 +39,11 @@ passport.use(new LocalStrategy({
     done(error, false)
   }
 }))
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});

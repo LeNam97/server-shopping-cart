@@ -1,3 +1,4 @@
+const passport = require('passport');
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
@@ -13,6 +14,9 @@ app.use(logger('dev'))
 app.use(cors(corsOptions))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+app.use(passport.initialize());
+app.use(passport.authenticate('local'));
 
 const routes = require('./routes/index')
 
